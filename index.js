@@ -31,10 +31,12 @@ app.get('/', (req, res) => {
 });
 
 // middleware
-app.use('api/auth', authRoutes);
-app.use('api/user', usersRoutes);
-app.use('api/hotels', hotelsRoutes);
-app.use('api/rooms', roomsRoutes);
+app.use(express.json());
+
+app.use('/api/auth', authRoutes);
+app.use('/api/user', usersRoutes);
+app.use('/api/hotels', hotelsRoutes);
+app.use('/api/rooms', roomsRoutes);
 
 app.listen(8800, () => {
   connect();
