@@ -1,12 +1,13 @@
 import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
-import { createErorr } from '../utils/error.js';
+import { createError } from '../utils/error.js';
 import jwt from 'jsonwebtoken';
 
 export const register = async (req, res, next) => {
   try {
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
+
     const newUser = new User({
       username: req.body.username,
       email: req.body.email,
@@ -23,14 +24,14 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ username: req.body.username });
-    if (!user) return next(createErorr('No user', 404));
+    if (!user) return next(createError('No user', 404));
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       user.password
     );
 
     if (!isPasswordCorrect)
-      return next(createErorr('wrong email or pass', 400));
+      return next(createError('wrong email or pass', 400));
 
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
@@ -40,7 +41,7 @@ export const login = async (req, res, next) => {
     res
       .cookie('access_token', token, { httpOnly: true })
       .status(200)
-      .json({ ...others });
+      .json({ details: { ...others }, isAdmin });
   } catch (err) {
     next(err);
   }
