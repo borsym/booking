@@ -31,7 +31,7 @@ export default function Hotels({}: Props) {
             <div className="flex flex-col mb-2 gap-[5px]">
               <label className="text-xs">Check-in Date</label>
               <span
-                className="h-8 p-1 bg-white flex items-center cursor-pointer"
+                className="p-1 bg-white flex items-center cursor-pointer h-[50px]"
                 onClick={() => setOpenDate(!openDate)}
               >{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
                 date[0].endDate,

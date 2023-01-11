@@ -13,9 +13,9 @@ export default function Home({}: Props) {
     <div>
       <Navbar />
       <Header />
-      <div className="flex flex-col items-center gap-[30px] mt-[50px]">
+    <div className="flex flex-col items-center gap-[30px] mt-[50px] justify-center">
         <Featured />
-        <h1 className="w-[1024px] text-lg">Browese by property</h1>
+        <h1 className="w-[1024px] text-lg ">Browese by property</h1>
         <PropertyList />
         <h1 className="w-[1024px] text-lg">Homes guests love</h1>
         <FeaturedProperties />
