@@ -11,7 +11,7 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 type Props = {
-  type: string;
+  type?: string;
 };
 
 type Option = {

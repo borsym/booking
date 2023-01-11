@@ -1,7 +1,12 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
-
+import Featured from '../../components/featured/Featured';
+import './home.css';
+import PropertyList from '../../components/propertyList/PropertyList';
+import FeaturedProperties from '../../components/featuredProperties/FeaturedProperties';
+import MailList from '../../components/mailList/MailList';
+import Footer from '../../components/footer/Footer';
 type Props = {};
 
 export default function Home({}: Props) {
@@ -9,6 +14,15 @@ export default function Home({}: Props) {
     <div>
       <Navbar />
       <Header />
+      <div className="homeContainer">
+        <Featured />
+        <h1 className="homeTitle">Browese by property</h1>
+        <PropertyList />
+        <h1 className="homeTitle">Homes guests love</h1>
+        <FeaturedProperties />
+        <MailList />
+        <Footer />
+      </div>
     </div>
   );
 }
