@@ -1,5 +1,5 @@
 .header {
-  background-color: #bebebe4a;
+  background-color: #003580;
   color: white;
   display: flex;
   justify-content: center;
@@ -35,7 +35,8 @@
 }
 
 .headerBtn {
-  color: #252525;
+  background-color: #0071c2;
+  color: white;
   font-weight: 500;
   border: none;
   padding: 10px;
@@ -43,7 +44,7 @@
 }
 
 .headerSearch {
-  background-color: #febb0237;
+  background-color: white;
   height: 30px;
   border: 3px solid #febb02;
   display: flex;
@@ -67,7 +68,7 @@
   border: none;
   outline: none;
   background-color: transparent;
-  color: rgb(255, 255, 255);
+  color: #252525;
   font-size: 16px;
   font-weight: 500;
   padding: 10px;
@@ -75,7 +76,7 @@
 }
 
 .headerSearchText {
-  color: lightblue;
+  color: #252525;
   cursor: pointer;
 }
 
@@ -119,7 +120,7 @@
 }
 
 optionCounterButton:disabled {
-  color: grey;
-  border: 1px solid grey;
+  color: 252525;
+  border: 1px solid 252525;
   cursor: not-allowed;
 }

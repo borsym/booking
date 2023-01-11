@@ -10,6 +10,7 @@ import { DateRange } from 'react-date-range';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 type Props = {
   type?: string;
 };
@@ -24,6 +25,9 @@ export default function Header({ type }: Props) {
   const [date, setDate] = useState<any>([
     { startDate: new Date(), endDate: new Date(), key: 'selection' },
   ]);
+
+  const [destination, setDestination] = useState('');
+
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState<Option>({
     adult: 1,
@@ -45,6 +49,13 @@ export default function Header({ type }: Props) {
       };
     });
   };
+
+  const navigate = useNavigate();
+
+  const handleSearch = () => {
+    navigate('/hotels', { state: { destination, date, options } });
+  };
+
   return (
     <div className="header">
       <div className="headerContainer">
@@ -76,15 +87,16 @@ export default function Header({ type }: Props) {
             <button className="headerBtn">Sign in / Register</button>
             <div className="headerSearch">
               <div className="headerSearchItem">
-                <HotelIcon />
+                <HotelIcon color="action" />
                 <input
                   type="text"
                   placeholder="Where to?"
                   className="headerSearchInput"
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="headerSearchItem">
-                <CalendarMonthOutlinedIcon />
+                <CalendarMonthOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
                   className="headerSearchText"
@@ -103,7 +115,7 @@ export default function Header({ type }: Props) {
                 )}
               </div>
               <div className="headerSearchItem">
-                <EmojiPeopleOutlinedIcon />
+                <EmojiPeopleOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenOption(!openOptions)}
                   className="headerSearchText"
@@ -183,7 +195,9 @@ export default function Header({ type }: Props) {
                 )}
               </div>
               <div className="headerSearchItem">
-                <button className="headerBtn">Search</button>
+                <button className="headerBtn" onClick={handleSearch}>
+                  Search
+                </button>
               </div>
             </div>
           </>
