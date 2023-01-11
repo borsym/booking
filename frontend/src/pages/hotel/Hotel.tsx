@@ -5,9 +5,9 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import './hotel.css';
 import MailList from '../../components/mailList/MailList';
 import Footer from '../../components/footer/Footer';
+import './hotel.css';
 type Props = {};
 
 export default function Hotel({}: Props) {
@@ -56,55 +56,61 @@ export default function Hotel({}: Props) {
     <div>
       <Navbar />
       <Header type="hotels" />
-      <div className="hotelContainer">
+      <div className="flex flex-col items-center mt-5">
         {open && (
-          <div className="slider">
+          <div className="sticky top-0 left-0 w-screen h-screen flex items-center z-50">
             <HighlightOffIcon
-              className="close"
+              className="absolute text-3xl cursor-pointer top-[20px] right-[20px] text-gray-400"
               onClick={() => setOpen(false)}
             />
             <ArrowBackIosIcon
-              className="arrow"
+              className="m-5 text-5xl cursor-pointer"
               onClick={() => handleMove('l')}
             />
-            <div className="sliderWrapper">
-              <img src={photos[slideNumber].src} alt="" className="sliderImg" />
+            <div className="w-full h-full flex justify-center items-center">
+              <img
+                src={photos[slideNumber].src}
+                alt=""
+                className="w-4/5 h-[80vh]"
+              />
             </div>
             <ArrowForwardIosIcon
-              className="arrow"
+              className="m-5 text-5xl cursor-pointer"
               onClick={() => handleMove('r')}
             />
           </div>
         )}
-        <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
-          <div className="hotelAddress">
+        <div className="w-full max-w-screen-lg flex flex-col relative gap-[10px]">
+          <button className="absolute right-0 bg-blue-700 text-white font-bold rounded cursor-pointer top-[10px] border-none py-[10px] px-[20px]">
+            Reserve or Book Now!
+          </button>
+          <h1 className="text-2xl">Tower Street Apartments</h1>
+          <div className="text-xs flex items-center gap-[10px]">
             <LocationOnIcon />
             <span>Elton St 125 New york</span>
           </div>
-          <span className="hotelDistance">
+          <span className="text-blue-700 font-medium">
             Excellent location – 500m from center
           </span>
-          <span className="hotelPriceHighlight">
+          <span className="text-green-900 font-medium">
             Book a stay over $114 at this property and get a free airport taxi
           </span>
-          <div className="hotelImages">
+          <div className="flex flex-wrap justify-between">
             {photos.map((photo, i) => (
-              <div className="hotelImgWrapper" key={i}>
+              <div className="w-1/3" key={i}>
                 <img
                   onClick={() => handleOpen(i)}
                   src={photo.src}
                   alt=""
-                  className="hotelImg"
+                  className="w-full object-cover cursor-pointer"
                 />
               </div>
             ))}
           </div>
-          <div className="hotelDetails">
+          <div className="flex justify-between mt-5 gap-[20px]">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of City</h1>
-              <p className="hotelDesc">
+              <h1 className="text-2xl">Stay in the heart of City</h1>
+              <p className="text-sm mt-5">
                 Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
                 Street Apartments has accommodations with air conditioning and
                 free WiFi. The units come with hardwood floors and feature a
@@ -118,16 +124,18 @@ export default function Hotel({}: Props) {
                 airport shuttle service.
               </p>
             </div>
-            <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
-              <span>
+            <div className="bg-indigo-100 p-5 flex flex-col flex-1 gap-[20px]">
+              <h1 className="text-lg">Perfect for a 9-night stay!</h1>
+              <span className="text-sm">
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
-              <h2>
+              <h2 className="font-light">
                 <b>$945</b> (9 nights)
               </h2>
-              <button>Reserve or Book Now!</button>
+              <button className="bg-blue-700 text-white font-bold cursor-pointer rounded border-none py-[10px] px-[20px]">
+                Reserve or Book Now!
+              </button>
             </div>
           </div>
         </div>

@@ -1,35 +1,19 @@
-import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-
 type Props = {};
 
 export default function Navbar({}: Props) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="default">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            Hotel
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Your Dream Hotel
-          </Typography>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <div className="h-[50px] bg-[#003580] flex justify-center">
+      <div className="w-full max-w-[1024px] text-white flex items-center justify-between">
+        <span className="font-medium">Booking</span>
+        <div className="navItems">
+          <button className="ml-[20px] border-none px-[10px] py-[5px] text-[#003580}">
+            Register
+          </button>
+          <button className="ml-[20px] border-none px-[10px] py-[5px] text-[#003580}">
+            Login
+          </button>
+        </div>
+      </div>
+    </div>
   );
 }

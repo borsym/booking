@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import './header.css';
+import { useState } from 'react';
 import HotelIcon from '@mui/icons-material/Hotel';
 import AirplanemodeActiveOutlinedIcon from '@mui/icons-material/AirplanemodeActiveOutlined';
 import TimeToLeaveOutlinedIcon from '@mui/icons-material/TimeToLeaveOutlined';
@@ -57,22 +56,22 @@ export default function Header({ type }: Props) {
   };
 
   return (
-    <div className="header">
-      <div className="headerContainer">
-        <div className="headerList">
-          <div className="headerListItem active">
+    <div className="bg-[#003580] text-white flex justify-center relative">
+      <div className="w-full max-w-[1024px] mt-[20px] mb-[100px]">
+        <div className="flex gap-[40px] mb-[50px]">
+          <div className="flex items-center gap-[10px] active">
             <HotelIcon />
             <span>Stay</span>
           </div>
-          <div className="headerListItem">
+          <div className="flex items-center gap-[10px]">
             <TimeToLeaveOutlinedIcon />
             <span>Car rental</span>
           </div>
-          <div className="headerListItem">
+          <div className="flex items-center gap-[10px]">
             <AirplanemodeActiveOutlinedIcon />
             <span>Flights</span>
           </div>
-          <div className="headerListItem">
+          <div className="flex items-center gap-[10px]">
             <LocalTaxiOutlinedIcon />
             <span>Taxi</span>
           </div>
@@ -80,26 +79,28 @@ export default function Header({ type }: Props) {
         {type !== 'hotels' && (
           <>
             <h1 className="headerTitle">A liftime of discounts</h1>
-            <p className="headerDesc">
+            <p className="my-[20px]">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Recusandae, architecto
             </p>
-            <button className="headerBtn">Sign in / Register</button>
-            <div className="headerSearch">
-              <div className="headerSearchItem">
+            <button className="bg-[#0071c2] text-white font-medium border-none p-[10px] cursor-pointer">
+              Sign in / Register
+            </button>
+            <div className="bg-white h-[50px] border-3 border-solid  flex items-center justify-around py-[10px] rounded-md absolute w-full max-w-[1024px] -bottom-[25px]">
+              <div className="flex items-center gap-[10px]">
                 <HotelIcon color="action" />
                 <input
                   type="text"
                   placeholder="Where to?"
-                  className="headerSearchInput"
+                  className="border-none outline-none text-[#252525] text-sm font-medium p-[10px] border-b-1 border-b-solid"
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
-              <div className="headerSearchItem">
+              <div className="flex items-center gap-[10px]">
                 <CalendarMonthOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
-                  className="headerSearchText"
+                  className="text-[#252525] cursor-pointer"
                 >{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
                   date[0].endDate,
                   'MM/dd/yyyy'
@@ -110,25 +111,25 @@ export default function Header({ type }: Props) {
                     onChange={(item: any) => setDate([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={date}
-                    className="date"
+                    className="absolute top-[50px] z-20"
                   />
                 )}
               </div>
-              <div className="headerSearchItem">
+              <div className="flex items-center gap-[10px]">
                 <EmojiPeopleOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenOption(!openOptions)}
-                  className="headerSearchText"
+                  className="text-[#252525] cursor-pointer"
                 >{`${options.adult} adult, ${options.children} children, ${options.room} room`}</span>
                 {openOptions && (
-                  <div className="options">
-                    <div className="optionsItem">
+                  <div className="absolute top-[50px] bg-[#252525] text-gray-200 border-4 z-20">
+                    <div className="flex w-[200px] justify-between m-[10px]">
                       <div className="optionText">
                         <span>Adult</span>
-                        <div className="optionCounter">
+                        <div className="flex items-center gap-[10px] text-sm">
                           <button
                             disabled={options.adult === 0}
-                            className="optionCounterButton"
+                            className="disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer text-[#0071c2]"
                             onClick={() => handleOption('adult', 'd')}
                           >
                             -
@@ -137,7 +138,7 @@ export default function Header({ type }: Props) {
                             {options.adult}
                           </span>
                           <button
-                            className="optionCounterButton"
+                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
                             onClick={() => handleOption('adult', 'i')}
                           >
                             +
@@ -145,13 +146,13 @@ export default function Header({ type }: Props) {
                         </div>
                       </div>
                     </div>
-                    <div className="optionsItem">
+                    <div className="flex w-[200px] justify-between m-[10px]">
                       <div className="optionText">
                         <span>Children</span>
-                        <div className="optionCounter">
+                        <div className="flex items-center gap-[10px] text-sm">
                           <button
                             disabled={options.children === 0}
-                            className="optionCounterButton"
+                            className="text-[#0071c2] disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
                             onClick={() => handleOption('children', 'd')}
                           >
                             -
@@ -160,7 +161,7 @@ export default function Header({ type }: Props) {
                             {options.children}
                           </span>
                           <button
-                            className="optionCounterButton"
+                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
                             onClick={() => handleOption('children', 'i')}
                           >
                             +
@@ -168,13 +169,13 @@ export default function Header({ type }: Props) {
                         </div>
                       </div>
                     </div>
-                    <div className="optionsItem">
+                    <div className="flex w-[200px] justify-between m-[10px]">
                       <div className="optionText">
                         <span>Room</span>
-                        <div className="optionCounter">
+                        <div className="flex items-center gap-[10px] text-sm">
                           <button
                             disabled={options.room === 0}
-                            className="optionCounterButton"
+                            className="text-[#0071c2] disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
                             onClick={() => handleOption('room', 'd')}
                           >
                             -
@@ -183,7 +184,7 @@ export default function Header({ type }: Props) {
                             {options.room}
                           </span>
                           <button
-                            className="optionCounterButton"
+                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
                             onClick={() => handleOption('room', 'i')}
                           >
                             +
@@ -194,8 +195,11 @@ export default function Header({ type }: Props) {
                   </div>
                 )}
               </div>
-              <div className="headerSearchItem">
-                <button className="headerBtn" onClick={handleSearch}>
+              <div className="flex items-center gap-[10px]">
+                <button
+                  className="bg-[#0071c2] text-white font-medium border-none p-[10px] cursor-pointer"
+                  onClick={handleSearch}
+                >
                   Search
                 </button>
               </div>
