@@ -10,8 +10,10 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.11.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "@types/react-redux": "^7.1.25",
     "@types/redux": "^3.6.0",
+    "axios": "^1.2.2",
     "data-fns": "^0.1.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

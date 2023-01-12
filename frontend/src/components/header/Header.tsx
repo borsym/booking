@@ -10,6 +10,8 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeDestination } from '../../app/bookingSlice';
 type Props = {
   type?: string;
 };
@@ -21,6 +23,8 @@ type Option = {
 };
 
 export default function Header({ type }: Props) {
+  const dispatch = useDispatch();
+
   const [date, setDate] = useState<any>([
     { startDate: new Date(), endDate: new Date(), key: 'selection' },
   ]);
@@ -52,6 +56,8 @@ export default function Header({ type }: Props) {
   const navigate = useNavigate();
 
   const handleSearch = () => {
+    dispatch(changeDestination(destination));
+
     navigate('/hotels', { state: { destination, date, options } });
   };
 

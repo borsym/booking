@@ -5,16 +5,27 @@ import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem';
+import useFetch from '../../hooks/useFetch';
 
 type Props = {};
 
 export default function Hotels({}: Props) {
   const location = useLocation();
-
+  // error boundery
   const [destination, setDestination] = useState(location.state.destination);
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
   const [openDate, setOpenDate] = useState(false);
+  const [min, setMin] = useState<null | string>(null);
+  const [max, setMax] = useState<null | string>(null);
+
+  const { data, loading, error, reFetch } = useFetch(
+    `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 0}`
+  );
+
+  const handleClick = () => {
+    reFetch();
+  };
 
   return (
     <div>
@@ -52,13 +63,21 @@ export default function Hotels({}: Props) {
                   <span className="lsOptionText">
                     Min price <small>per night</small>
                   </span>
-                  <input type="number" className="w-12" />
+                  <input
+                    type="number"
+                    className="w-12"
+                    onChange={(e) => setMin(e.target.value)}
+                  />
                 </div>
                 <div className="flex justify-between mb-2 text-xs">
                   <span className="lsOptionText">
                     Max price <small>per night</small>
                   </span>
-                  <input type="number" className="w-12" />
+                  <input
+                    type="number"
+                    className="w-12"
+                    onChange={(e) => setMax(e.target.value)}
+                  />
                 </div>
                 <div className="flex justify-between mb-2 text-xs">
                   <span className="lsOptionText">Adult</span>
@@ -89,20 +108,23 @@ export default function Hotels({}: Props) {
                 </div>
               </div>
             </div>
-            <button className="p-2 bg-blue-700 text-white w-full font-medium cursor-pointer">
+            <button
+              className="p-2 bg-blue-700 text-white w-full font-medium cursor-pointer"
+              onClick={handleClick}
+            >
               Search
             </button>
           </div>
           <div className="listResult">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {loading ? (
+              'loading'
+            ) : (
+              <>
+                {data.map((item: any) => (
+                  <SearchItem item={item} key={item._id} />
+                ))}
+              </>
+            )}
           </div>
         </div>
       </div>
