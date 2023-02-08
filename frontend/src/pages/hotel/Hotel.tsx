@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -7,7 +7,6 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import MailList from '../../components/MailList';
 import Footer from '../../components/Footer';
-import './hotel.css';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -119,7 +118,7 @@ export default function Hotel({}: Props) {
                   : null}
               </div>
               <div className="flex justify-between mt-5 gap-[20px]">
-                <div className="hotelDetailsTexts">
+                <div className="flex-[3_3_0%]">
                   <h1 className="text-2xl">Stay in the heart of City</h1>
                   <p className="text-sm mt-5">
                     Located a 5-minute walk from St. Florian's Gate in Krakow,

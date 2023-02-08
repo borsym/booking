@@ -25,6 +25,8 @@ export default function Hotels({}: Props) {
     `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`
   );
 
+  console.log('dataaa', data);
+
   const handleClick = () => {
     reFetch();
   };
@@ -32,7 +34,7 @@ export default function Hotels({}: Props) {
   const renderData = () => {
     if (data.length === 0)
       return <h1 className="text-2xl text-center">No result found</h1>;
-    return data.map((item: any) => <SearchItem item={item} key={item._id} />);
+    return data.map((item) => <SearchItem item={item} key={item._id} />);
   };
 
   return (
@@ -48,7 +50,9 @@ export default function Hotels({}: Props) {
               <input
                 placeholder={destination}
                 type="text"
-                onChange={(e) => setDestination(e.target.value)}
+                onChange={(e) =>
+                  setDestination(e.target.value.toLocaleLowerCase())
+                }
               />
             </div>
             <div className="flex flex-col mb-2 gap-2">
@@ -127,7 +131,9 @@ export default function Hotels({}: Props) {
               Search
             </button>
           </div>
-          <div className="listResult">{loading ? 'loading' : renderData()}</div>
+          <div className="flex-[3_3_0%]">
+            {loading ? 'loading' : renderData()}
+          </div>
         </div>
       </div>
     </div>

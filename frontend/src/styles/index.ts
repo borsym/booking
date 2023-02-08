@@ -16,6 +16,8 @@ const styles = {
   navPadding: 'pt-[98px]',
   button: 'border-none text-[#003580] bg-white rounded',
   buttonHover: 'ease-in-out duration-300 hover:bg-[#0071c2] hover:text-white',
+  reversedButtonHover:
+    'ease-in-out duration-300 hover:bg-white hover:text-[#0071c2]',
   personSelector:
     'w-8 h-8 border-1 border-solid border-[#0071c2] bg-white cursor-pointer text-[#0071c2]',
   paddingInput: 'px-4 py-2',
