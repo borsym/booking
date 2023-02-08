@@ -29,6 +29,12 @@ export default function Hotels({}: Props) {
     reFetch();
   };
 
+  const renderData = () => {
+    if (data.length === 0)
+      return <h1 className="text-2xl text-center">No result found</h1>;
+    return data.map((item: any) => <SearchItem item={item} key={item._id} />);
+  };
+
   return (
     <div>
       <Navbar />
@@ -121,17 +127,7 @@ export default function Hotels({}: Props) {
               Search
             </button>
           </div>
-          <div className="listResult">
-            {loading ? (
-              'loading'
-            ) : (
-              <>
-                {data.map((item: any) => (
-                  <SearchItem item={item} key={item._id} />
-                ))}
-              </>
-            )}
-          </div>
+          <div className="listResult">{loading ? 'loading' : renderData()}</div>
         </div>
       </div>
     </div>

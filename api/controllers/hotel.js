@@ -54,7 +54,7 @@ export const getAllHotel = async (req, res, next) => {
 
 export const countByCity = async (req, res, next) => {
   if (!req.query.cities) return res.status(200).json([]);
-  const cities = req.query.cities.split(',');
+  const cities = req.query.cities.split(',') ?? [];
   try {
     const list = await Promise.all(
       cities.map((city) => {

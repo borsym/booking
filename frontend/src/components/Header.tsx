@@ -133,7 +133,7 @@ export default function Header({ type }: Props) {
                   className="text-[#252525] cursor-pointer"
                 >{`${options.adult} adult, ${options.children} children, ${options.room} room`}</span>
                 {openOptions && (
-                  <div className="absolute top-12 bg-[#252525] text-gray-200 border-4 z-20">
+                  <div className="absolute top-12 bg-gray-400 text-gray-200 border-4 z-20">
                     <div className={`${styles.flexBetween} flex w-48 m-3`}>
                       <div className="optionText">
                         <span>Adult</span>
@@ -208,7 +208,7 @@ export default function Header({ type }: Props) {
               </div>
               <div className={`${styles.flexCenter} gap-3`}>
                 <button
-                  className="bg-[#0071c2] text-white font-medium border-none p-3 cursor-pointer"
+                  className="bg-[#0071c2] text-white font-medium border-none px-4 py-2 cursor-pointer"
                   onClick={handleSearch}
                 >
                   Search

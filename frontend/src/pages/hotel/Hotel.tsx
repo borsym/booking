@@ -68,7 +68,7 @@ export default function Hotel({}: Props) {
             {open && (
               <div className="sticky top-0 left-0 w-screen h-screen flex items-center z-50">
                 <HighlightOffIcon
-                  className="absolute text-3xl cursor-pointer top-[20px] right-[20px] text-gray-400"
+                  className="absolute text-3xl cursor-pointer top-5 right-5 text-gray-400"
                   onClick={() => setOpen(false)}
                 />
                 <ArrowBackIosIcon
@@ -88,12 +88,12 @@ export default function Hotel({}: Props) {
                 />
               </div>
             )}
-            <div className="w-full max-w-screen-lg flex flex-col relative gap-[10px]">
-              <button className="absolute right-0 bg-blue-700 text-white font-bold rounded cursor-pointer top-[10px] border-none py-[10px] px-[20px]">
+            <div className="w-full max-w-screen-lg flex flex-col relative gap-3">
+              <button className="absolute right-0 bg-blue-700 text-white font-bold rounded cursor-pointer top-3 border-none py-3 px-[20px]">
                 Reserve or Book Now!
               </button>
               <h1 className="text-2xl">{data?.name}</h1>
-              <div className="text-xs flex items-center gap-[10px]">
+              <div className="text-xs flex items-center gap-3">
                 <LocationOnIcon />
                 <span>{data?.name}</span>address
               </div>
@@ -147,7 +147,7 @@ export default function Hotel({}: Props) {
                     nights)
                   </h2>
                   <button
-                    className="bg-blue-700 text-white font-bold cursor-pointer rounded border-none py-[10px] px-[20px]"
+                    className="bg-blue-700 text-white font-bold cursor-pointer rounded border-none py-3 px-[20px]"
                     onClick={handleClick}
                   >
                     Reserve or Book Now!
