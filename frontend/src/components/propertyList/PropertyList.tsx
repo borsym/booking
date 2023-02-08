@@ -5,7 +5,7 @@ type Props = {};
 
 export default function PropertyList({}: Props) {
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels/countByType` // ?types=apartment
+    `${URL}/hotels/count/countByType` // ?types=apartment
   );
 
   console.log('data', data);

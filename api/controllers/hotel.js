@@ -40,7 +40,7 @@ export const getHotel = async (req, res, next) => {
 };
 
 export const getAllHotel = async (req, res, next) => {
-  const { min, max, ...others } = req.query;
+  const { min, max, ...others } = req.query; // limit not include?
   try {
     const hotels = await Hotel.find({
       ...others,
@@ -53,6 +53,7 @@ export const getAllHotel = async (req, res, next) => {
 };
 
 export const countByCity = async (req, res, next) => {
+  if (!req.query.cities) return res.status(200).json([]);
   const cities = req.query.cities.split(',');
   try {
     const list = await Promise.all(
@@ -67,6 +68,7 @@ export const countByCity = async (req, res, next) => {
 };
 
 export const countByType = async (req, res, next) => {
+  if (!req.query.types) return res.status(200).json([]);
   const types = req.query.types.split(',');
   try {
     const list = await Promise.all(

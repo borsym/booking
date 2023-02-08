@@ -5,7 +5,7 @@ type Props = {};
 
 export default function Featured({}: Props) {
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels/countByCity` // ?cities=berlin
+    `${URL}/hotels/count/countByCity` // ?cities=berlin
   );
 
   console.log(data);

@@ -2,7 +2,7 @@ import React from 'react';
 import './searchItem.css';
 import { Link } from 'react-router-dom';
 type Props = {
-  photos: string;
+  photos: string[];
   name: string;
   desc: string;
   rating: number;
@@ -10,7 +10,8 @@ type Props = {
   _id: string;
 };
 
-export default function SearchItem(item: Props) {
+export default function SearchItem(item: any) {
+  console.log('items', item.item);
   return (
     <div className="p-2 rounded flex justify-between mb-5 border-8 border-solid gap-[20px]">
       <img
@@ -48,7 +49,7 @@ export default function SearchItem(item: Props) {
         <div className="siDetailTexts">
           <span className="text-2xl">${item?.cheapestPrice}</span>
           <span className="text-xs text-gray-600">Includes taxes and fees</span>
-          <Link to={`/hotel/${item._id || '63baef9f5d737ae9610c103e'}`}>
+          <Link to={`/hotel/${item.item._id}`}>
             <button className="bg-blue-700 text-white font-bold cursor-pointer rounded py-[10px] px-[5px] border-none">
               See availability
             </button>

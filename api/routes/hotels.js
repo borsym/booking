@@ -13,6 +13,7 @@ import {
 import { verifyAdmin } from '../utils/verifyToken.js';
 
 const router = express.Router();
+
 router.post('/', verifyAdmin, createHotel);
 
 router.put('/:id', verifyAdmin, updateHotel);
@@ -23,8 +24,8 @@ router.get('/:id', getHotel);
 
 router.get('/', getAllHotel);
 
-router.get('/countByCity', countByCity);
+router.get('/count/countByCity', countByCity);
 
-router.get('/countByType', countByType);
+router.get('/count/countByType', countByType);
 
 export default router;

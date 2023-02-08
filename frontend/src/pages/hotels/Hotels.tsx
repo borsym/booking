@@ -26,6 +26,8 @@ export default function Hotels({}: Props) {
     `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`
   );
 
+  console.log('hotel', data);
+
   const handleClick = () => {
     reFetch();
   };
@@ -40,7 +42,11 @@ export default function Hotels({}: Props) {
             <h1 className="text-xl mb-2">Search</h1>
             <div className="flex flex-col mb-2 gap-[5px]">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input
+                placeholder={destination}
+                type="text"
+                onChange={(e) => setDestination(e.target.value)}
+              />
             </div>
             <div className="flex flex-col mb-2 gap-[5px]">
               <label className="text-xs">Check-in Date</label>
