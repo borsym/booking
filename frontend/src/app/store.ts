@@ -2,14 +2,14 @@
 // use the redux toolkit
 
 import { configureStore } from '@reduxjs/toolkit';
-import bookingReducer from './bookingSlice';
+import searchReducer from './searchSlice';
+import authReducer from './authSlice';
 
 const store = configureStore({
   reducer: {
-    booking: bookingReducer,
+    search: searchReducer,
+    auth: authReducer,
   },
 });
 
 export default store;
-// Path: Booking\frontend\src\app\bookingSlice.ts
-// create a new slice with redux toolkit

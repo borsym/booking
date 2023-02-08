@@ -6,13 +6,16 @@ import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
 import SearchItem from '../../components/searchItem/SearchItem';
 import useFetch from '../../hooks/useFetch';
+import { URL } from '../../utils/static';
 
 type Props = {};
 
 export default function Hotels({}: Props) {
   const location = useLocation();
   // error boundery
-  const [destination, setDestination] = useState(location.state.destination);
+  const [destination, setDestination] = useState<any>(
+    location.state.destination
+  );
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
   const [openDate, setOpenDate] = useState(false);
@@ -20,7 +23,7 @@ export default function Hotels({}: Props) {
   const [max, setMax] = useState<null | string>(null);
 
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 0}`
+    `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`
   );
 
   const handleClick = () => {

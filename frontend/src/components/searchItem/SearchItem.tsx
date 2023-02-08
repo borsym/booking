@@ -2,7 +2,7 @@ import React from 'react';
 import './searchItem.css';
 import { Link } from 'react-router-dom';
 type Props = {
-  photos: string[];
+  photos: string;
   name: string;
   desc: string;
   rating: number;
@@ -13,7 +13,14 @@ type Props = {
 export default function SearchItem(item: Props) {
   return (
     <div className="p-2 rounded flex justify-between mb-5 border-8 border-solid gap-[20px]">
-      <img src={item.photos[0]} alt="" className="w-48 h-48 object-cover" />
+      <img
+        src={
+          item?.photos ||
+          'https://plus.unsplash.com/premium_photo-1663126312373-b2d5264c2edd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1183&q=80'
+        }
+        alt=""
+        className="w-48 h-48 object-cover"
+      />
       <div className="flex flex-col gap-[10px] .siDesc">
         <h1 className="text-xl text-blue-700">{item.name}</h1>
         <span className="text-xs">500m from center</span>
@@ -39,9 +46,9 @@ export default function SearchItem(item: Props) {
           </button>
         </div>
         <div className="siDetailTexts">
-          <span className="text-2xl">$ ${item?.cheapestPrice}</span>
+          <span className="text-2xl">${item?.cheapestPrice}</span>
           <span className="text-xs text-gray-600">Includes taxes and fees</span>
-          <Link to={`/hotels/${item._id}`}>
+          <Link to={`/hotel/${item._id || '63baef9f5d737ae9610c103e'}`}>
             <button className="bg-blue-700 text-white font-bold cursor-pointer rounded py-[10px] px-[5px] border-none">
               See availability
             </button>

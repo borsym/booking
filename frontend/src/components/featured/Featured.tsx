@@ -1,10 +1,11 @@
 import useFetch from '../../hooks/useFetch';
+import { URL } from '../../utils/static';
 
 type Props = {};
 
 export default function Featured({}: Props) {
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels/countByCity?cities=berlin`
+    `${URL}/hotels/countByCity` // ?cities=berlin
   );
 
   console.log(data);

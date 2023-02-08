@@ -11,7 +11,7 @@ import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeDestination } from '../../app/bookingSlice';
+import { newSearch, resetSearch } from '../../app/searchSlice';
 type Props = {
   type?: string;
 };
@@ -23,25 +23,24 @@ type Option = {
 };
 
 export default function Header({ type }: Props) {
-  const dispatch = useDispatch();
-
   const [date, setDate] = useState<any>([
     { startDate: new Date(), endDate: new Date(), key: 'selection' },
   ]);
-
   const [destination, setDestination] = useState('');
-
   const [openDate, setOpenDate] = useState(false);
   const [options, setOptions] = useState<Option>({
     adult: 1,
     children: 1,
     room: 1,
   });
-
   const [openOptions, setOpenOption] = useState(false);
 
+  // const { city, dates, options }: any = useSelector<any>(
+  //   (state) => state.search
+  // );
+  const dispatch = useDispatch();
+
   const handleOption = (name: string, operation: string) => {
-    console.log(name, operation);
     setOptions((prev: Option) => {
       return {
         ...prev,
@@ -56,7 +55,13 @@ export default function Header({ type }: Props) {
   const navigate = useNavigate();
 
   const handleSearch = () => {
-    dispatch(changeDestination(destination));
+    const datesWithISOString = date.map((date: any) => ({
+      ...date,
+      startDate: date.startDate.toISOString(),
+      endDate: date.endDate.toISOString(),
+    }));
+
+    dispatch(newSearch({ destination, date: datesWithISOString, options }));
 
     navigate('/hotels', { state: { destination, date, options } });
   };

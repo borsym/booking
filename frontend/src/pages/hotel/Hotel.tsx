@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -10,17 +10,26 @@ import Footer from '../../components/footer/Footer';
 import './hotel.css';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { dayDifference } from '../../utils/helper';
+import { URL } from '../../utils/static';
 type Props = {};
 
 export default function Hotel({}: Props) {
-const location = useLocation();
+  const location = useLocation();
   const id = location.pathname.split('/')[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-
+  console.log(id);
   const { data, loading, error } = useFetch(`${URL}/hotels/find/${id}`);
-
   const photoLength: number = data?.photos?.length;
+
+  const { date, options }: any = useSelector<any>((state) => state.search);
+  // TODO ez lehet hibas
+  // const days = dayDifference(date[0].startDate, date[0].endDate);
+  console.log('data', data);
+  console.log('date', date);
+  const days = 1;
 
   const handleOpen = (i: number) => {
     setSlideNumber(i);
@@ -38,6 +47,8 @@ const location = useLocation();
 
     setSlideNumber(newSlideNumber);
   };
+
+  const handleClick = (e: any) => {};
 
   return (
     <div>
@@ -117,15 +128,19 @@ const location = useLocation();
                 </p>
               </div>
               <div className="bg-indigo-100 p-5 flex flex-col flex-1 gap-[20px]">
-                <h1 className="text-lg">Perfect for a 9-night stay!</h1>
+                <h1 className="text-lg">Perfect for {days}-night stay!</h1>
                 <span className="text-sm">
                   Located in the real heart of Krakow, this property has an
                   excellent location score of 9.8!
                 </span>
                 <h2 className="font-light">
-                  <b>$945</b> (9 nights)
+                  <b>${days * data.cheapestPrice * options.room}</b> ({days}{' '}
+                  nights)
                 </h2>
-                <button className="bg-blue-700 text-white font-bold cursor-pointer rounded border-none py-[10px] px-[20px]">
+                <button
+                  className="bg-blue-700 text-white font-bold cursor-pointer rounded border-none py-[10px] px-[20px]"
+                  onClick={handleClick}
+                >
                   Reserve or Book Now!
                 </button>
               </div>
