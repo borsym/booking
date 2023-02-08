@@ -8,6 +8,8 @@ import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import MailList from '../../components/MailList';
 import Footer from '../../components/Footer';
 import useFetch from '../../hooks/useFetch';
+import Reserve from '../../components/Reserve';
+
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { dayDifference } from '../../utils/utils';

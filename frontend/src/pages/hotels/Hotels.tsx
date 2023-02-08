@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from '../../components/Navbar';
 import Header from '../../components/Header';
+
+import SearchItem from '../../components/SearchItem';
+import useFetch from '../../hooks/useFetch';
+
+import { MAX_PRICE, MIN_PRICE, URL } from '../../utils/static';
 import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
-import SearchItem from '../../components/SearchItem';
-import useFetch from '../../hooks/useFetch';
-import { URL } from '../../utils/static';
-
 type Props = {};
 
 export default function Hotels({}: Props) {
@@ -24,8 +25,8 @@ export default function Hotels({}: Props) {
   }>({ min: null, max: null });
 
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels?city=${destination}&min=${range.min || 0}&max=${
-      range.max || 10000
+    `${URL}/hotels?city=${destination}&min=${range.min || MIN_PRICE}&max=${
+      range.max || MAX_PRICE
     }`
   );
 

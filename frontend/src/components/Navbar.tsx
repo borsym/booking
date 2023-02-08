@@ -23,11 +23,13 @@ export default function Navbar({}: Props) {
           >
             Register
           </button>
-          <button
-            className={`ml-5 px-3 py-1 ${styles.button} ${styles.buttonHover}`}
-          >
-            Login
-          </button>
+          <Link to="/login">
+            <button
+              className={`ml-5 px-3 py-1 ${styles.button} ${styles.buttonHover}`}
+            >
+              Login
+            </button>
+          </Link>
         </div>
         {/* )} */}
       </div>
