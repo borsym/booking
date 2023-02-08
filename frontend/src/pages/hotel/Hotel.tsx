@@ -1,37 +1,35 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
-import Header from '../../components/header/Header';
+import Navbar from '../../components/Navbar';
+import Header from '../../components/Header';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
-import MailList from '../../components/mailList/MailList';
-import Footer from '../../components/footer/Footer';
+import MailList from '../../components/MailList';
+import Footer from '../../components/Footer';
 import './hotel.css';
 import useFetch from '../../hooks/useFetch';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { dayDifference } from '../../utils/helper';
+import { dayDifference } from '../../utils/utils';
 import { URL } from '../../utils/static';
 type Props = {};
 
 export default function Hotel({}: Props) {
-  console.log('1');
   const location = useLocation();
   const id = location.pathname.split('/')[2];
-  console.log('2');
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  console.log('3');
+  const [openModal, setOpenModal] = useState(false);
+
   const { data, loading, error } = useFetch(`${URL}/hotels/${id}`);
 
   const photoLength: number = data?.photos?.length;
 
   const { date, options }: any = useSelector<any>((state) => state.search);
+  // const { user } = useSelector<any>((state) => state.auth);
   // TODO ez lehet hibas
   // const days = dayDifference(date[0].startDate, date[0].endDate);
-  console.log('hotel, data', data);
-  console.log('hotel, date', date);
   const days = 1;
 
   const handleOpen = (i: number) => {
@@ -51,8 +49,13 @@ export default function Hotel({}: Props) {
     setSlideNumber(newSlideNumber);
   };
 
-  const handleClick = (e: any) => {};
-
+  const handleClick = () => {
+    // if (user) {
+    //   setOpenModal(true);
+    // } else {
+    //   navigate('/login');
+    // }
+  };
   return (
     <div>
       {loading ? (
@@ -157,6 +160,7 @@ export default function Hotel({}: Props) {
           </div>
         </>
       )}
+      {openModal && <Reserve setOpen={setOpenModal} hotelId={id} />}
     </div>
   );
 }

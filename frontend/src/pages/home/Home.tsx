@@ -1,11 +1,12 @@
 import React from 'react';
-import Navbar from '../../components/navbar/Navbar';
-import Header from '../../components/header/Header';
-import Featured from '../../components/featured/Featured';
-import PropertyList from '../../components/propertyList/PropertyList';
-import FeaturedProperties from '../../components/featuredProperties/FeaturedProperties';
-import MailList from '../../components/mailList/MailList';
-import Footer from '../../components/footer/Footer';
+import Navbar from '../../components/Navbar';
+import Header from '../../components/Header';
+import Featured from '../../components/Featured';
+import PropertyList from '../../components/PropertyList';
+import FeaturedProperties from '../../components/FeaturedProperties';
+import MailList from '../../components/MailList';
+import Footer from '../../components/Footer';
+import styles from '../../styles';
 type Props = {};
 
 export default function Home({}: Props) {
@@ -13,11 +14,11 @@ export default function Home({}: Props) {
     <div>
       <Navbar />
       <Header />
-      <div className="flex flex-col items-center gap-[30px] mt-[50px] justify-center">
+      <div className={`${styles.flexCenter} flex-col gap-8 mt-12`}>
         <Featured />
-        <h1 className="w-[1024px] text-lg ">Browese by property</h1>
+        <h1 className="w-5xl text-lg ">Browese by property</h1>
         <PropertyList />
-        <h1 className="w-[1024px] text-lg">Homes guests love</h1>
+        <h1 className="w-5xl text-lg">Homes guests love</h1>
         <FeaturedProperties />
         <MailList />
         <Footer />

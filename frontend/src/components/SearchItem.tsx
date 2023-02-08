@@ -1,6 +1,7 @@
 import React from 'react';
 import './searchItem.css';
 import { Link } from 'react-router-dom';
+import styles from '../styles';
 type Props = {
   photos: string[];
   name: string;
@@ -11,9 +12,9 @@ type Props = {
 };
 
 export default function SearchItem(item: any) {
-  console.log('items', item.item);
+  // console.log('items', item.item); // TODO!!
   return (
-    <div className="p-2 rounded flex justify-between mb-5 border-8 border-solid gap-[20px]">
+    <div className="p-2 rounded flex justify-between mb-5 border-8 border-solid gap-5">
       <img
         src={
           item?.photos ||
@@ -22,7 +23,7 @@ export default function SearchItem(item: any) {
         alt=""
         className="w-48 h-48 object-cover"
       />
-      <div className="flex flex-col gap-[10px] .siDesc">
+      <div className="flex flex-col gap-2 .siDesc">
         <h1 className="text-xl text-blue-700">{item.name}</h1>
         <span className="text-xs">500m from center</span>
         <span className="text-xs bg-green-900 text-white p-1 rounded w-max">
@@ -39,8 +40,8 @@ export default function SearchItem(item: any) {
           You can cancel later, so lock in this great price today!
         </span>
       </div>
-      <div className="flex flex-col justify-between flex-1">
-        <div className="flex justify-between">
+      <div className={`flex justify-between flex-col flex-1`}>
+        <div className={`flex justify-between`}>
           <span className="font-medium">Excellent</span>
           <button className="bg-blue-900 text-white p-1 font-bold border-none">
             {item?.rating}
@@ -50,7 +51,7 @@ export default function SearchItem(item: any) {
           <span className="text-2xl">${item?.cheapestPrice}</span>
           <span className="text-xs text-gray-600">Includes taxes and fees</span>
           <Link to={`/hotel/${item.item._id}`}>
-            <button className="bg-blue-700 text-white font-bold cursor-pointer rounded py-[10px] px-[5px] border-none">
+            <button className="bg-blue-700 text-white font-bold cursor-pointer rounded py-3 px-2 border-none">
               See availability
             </button>
           </Link>

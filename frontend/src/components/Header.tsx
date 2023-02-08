@@ -11,7 +11,8 @@ import 'react-date-range/dist/theme/default.css';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { newSearch, resetSearch } from '../../app/searchSlice';
+import { newSearch, resetSearch } from '../app/searchSlice';
+import styles from '../styles';
 type Props = {
   type?: string;
 };
@@ -35,9 +36,6 @@ export default function Header({ type }: Props) {
   });
   const [openOptions, setOpenOption] = useState(false);
 
-  // const { city, dates, options }: any = useSelector<any>(
-  //   (state) => state.search
-  // );
   const dispatch = useDispatch();
 
   const handleOption = (name: string, operation: string) => {
@@ -68,21 +66,21 @@ export default function Header({ type }: Props) {
 
   return (
     <div className="bg-[#003580] text-white flex justify-center relative">
-      <div className="w-full max-w-[1024px] mt-[20px] mb-[100px]">
-        <div className="flex gap-[40px] mb-[50px]">
-          <div className="flex items-center gap-[10px] active">
+      <div className="w-full max-w-5xl mt-5 mb-24">
+        <div className="flex gap-10 mb-12">
+          <div className={`${styles.flexCenter} gap-3 active`}>
             <HotelIcon />
             <span>Stay</span>
           </div>
-          <div className="flex items-center gap-[10px]">
+          <div className={`${styles.flexCenter} gap-3`}>
             <TimeToLeaveOutlinedIcon />
             <span>Car rental</span>
           </div>
-          <div className="flex items-center gap-[10px]">
+          <div className={`${styles.flexCenter} gap-3`}>
             <AirplanemodeActiveOutlinedIcon />
             <span>Flights</span>
           </div>
-          <div className="flex items-center gap-[10px]">
+          <div className={`${styles.flexCenter} gap-3`}>
             <LocalTaxiOutlinedIcon />
             <span>Taxi</span>
           </div>
@@ -94,20 +92,22 @@ export default function Header({ type }: Props) {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Recusandae, architecto
             </p>
-            <button className="bg-[#0071c2] text-white font-medium border-none p-[10px] cursor-pointer">
+            <button className="bg-[#0071c2] text-white font-medium border-none p-2 cursor-pointer">
               Sign in / Register
             </button>
-            <div className="bg-white h-[50px] border-3 border-solid  flex items-center justify-around py-[10px] rounded-md absolute w-full max-w-[1024px] -bottom-[25px]">
-              <div className="flex items-center gap-[10px]">
+            <div
+              className={`bg-white h-12 border-3 border-solid  ${styles.flexAround} py-3 rounded-md absolute w-full max-w-5xl -bottom-6`}
+            >
+              <div className={`${styles.flexCenter} gap-3`}>
                 <HotelIcon color="action" />
                 <input
                   type="text"
                   placeholder="Where to?"
-                  className="border-none outline-none text-[#252525] text-sm font-medium p-[10px] border-b-1 border-b-solid"
+                  className="border-none outline-none text-[#252525] text-sm font-medium p-3 border-b-1 border-b-solid"
                   onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
-              <div className="flex items-center gap-[10px]">
+              <div className={`${styles.flexCenter} gap-3`}>
                 <CalendarMonthOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenDate(!openDate)}
@@ -122,25 +122,25 @@ export default function Header({ type }: Props) {
                     onChange={(item: any) => setDate([item.selection])}
                     moveRangeOnFirstSelection={false}
                     ranges={date}
-                    className="absolute top-[50px] z-20"
+                    className="absolute top-12 z-20"
                   />
                 )}
               </div>
-              <div className="flex items-center gap-[10px]">
+              <div className={`${styles.flexCenter} gap-3`}>
                 <EmojiPeopleOutlinedIcon color="action" />
                 <span
                   onClick={() => setOpenOption(!openOptions)}
                   className="text-[#252525] cursor-pointer"
                 >{`${options.adult} adult, ${options.children} children, ${options.room} room`}</span>
                 {openOptions && (
-                  <div className="absolute top-[50px] bg-[#252525] text-gray-200 border-4 z-20">
-                    <div className="flex w-[200px] justify-between m-[10px]">
+                  <div className="absolute top-12 bg-[#252525] text-gray-200 border-4 z-20">
+                    <div className={`${styles.flexBetween} flex w-48 m-3`}>
                       <div className="optionText">
                         <span>Adult</span>
-                        <div className="flex items-center gap-[10px] text-sm">
+                        <div className={`${styles.flexCenter} gap-3 text-sm`}>
                           <button
                             disabled={options.adult === 0}
-                            className="disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer text-[#0071c2]"
+                            className={`disabled:text-[#252525] disabled:cursor-not-allowed ${styles.personSelector}`}
                             onClick={() => handleOption('adult', 'd')}
                           >
                             -
@@ -149,7 +149,7 @@ export default function Header({ type }: Props) {
                             {options.adult}
                           </span>
                           <button
-                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
+                            className={`${styles.personSelector}`}
                             onClick={() => handleOption('adult', 'i')}
                           >
                             +
@@ -157,13 +157,13 @@ export default function Header({ type }: Props) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex w-[200px] justify-between m-[10px]">
+                    <div className={`${styles.flexBetween} w-48  m-3`}>
                       <div className="optionText">
                         <span>Children</span>
-                        <div className="flex items-center gap-[10px] text-sm">
+                        <div className={`${styles.flexCenter} gap-3 text-sm`}>
                           <button
                             disabled={options.children === 0}
-                            className="text-[#0071c2] disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
+                            className={`disabled:text-[#252525] disabled:cursor-not-allowed ${styles.personSelector}`}
                             onClick={() => handleOption('children', 'd')}
                           >
                             -
@@ -172,7 +172,7 @@ export default function Header({ type }: Props) {
                             {options.children}
                           </span>
                           <button
-                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
+                            className={`${styles.personSelector}`}
                             onClick={() => handleOption('children', 'i')}
                           >
                             +
@@ -180,13 +180,13 @@ export default function Header({ type }: Props) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex w-[200px] justify-between m-[10px]">
+                    <div className={`${styles.flexBetween} flex w-48 m-3`}>
                       <div className="optionText">
                         <span>Room</span>
-                        <div className="flex items-center gap-[10px] text-sm">
+                        <div className={`${styles.flexCenter} gap-3 text-sm`}>
                           <button
                             disabled={options.room === 0}
-                            className="text-[#0071c2] disabled:text-[#252525] disabled:cursor-not-allowed w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
+                            className={`disabled:text-[#252525] disabled:cursor-not-allowed ${styles.personSelector}`}
                             onClick={() => handleOption('room', 'd')}
                           >
                             -
@@ -195,7 +195,7 @@ export default function Header({ type }: Props) {
                             {options.room}
                           </span>
                           <button
-                            className="text-[#0071c2] w-[30px] h-[30px] border-1 border-solid border-[#0071c2] bg-white cursor-pointer"
+                            className={`${styles.personSelector}`}
                             onClick={() => handleOption('room', 'i')}
                           >
                             +
@@ -206,9 +206,9 @@ export default function Header({ type }: Props) {
                   </div>
                 )}
               </div>
-              <div className="flex items-center gap-[10px]">
+              <div className={`${styles.flexCenter} gap-3`}>
                 <button
-                  className="bg-[#0071c2] text-white font-medium border-none p-[10px] cursor-pointer"
+                  className="bg-[#0071c2] text-white font-medium border-none p-3 cursor-pointer"
                   onClick={handleSearch}
                 >
                   Search

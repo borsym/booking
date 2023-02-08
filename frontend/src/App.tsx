@@ -1,20 +1,22 @@
-import { useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Home from './pages/home/Home';
-import Hotels from './pages/hotels/Hotels';
-import Hotel from './pages/hotel/Hotel';
 import './index.css';
-import Login from './pages/login/Login';
+const Home = lazy(() => import('./pages/home/Home'));
+const Hotels = lazy(() => import('./pages/hotels/Hotels'));
+const Hotel = lazy(() => import('./pages/hotel/Hotel'));
+const Login = lazy(() => import('./pages/login/Login'));
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/hotels" element={<Hotels />} />
-        <Route path="/hotel/:id" element={<Hotel />} />
-        <Route path="/login" element={<Login />} />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/hotels" element={<Hotels />} />
+          <Route path="/hotel/:id" element={<Hotel />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 }

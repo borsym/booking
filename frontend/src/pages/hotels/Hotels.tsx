@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import Navbar from '../../components/navbar/Navbar';
-import Header from '../../components/header/Header';
+import Navbar from '../../components/Navbar';
+import Header from '../../components/Header';
 import { useLocation } from 'react-router-dom';
 import { format } from 'date-fns';
 import { DateRange } from 'react-date-range';
-import SearchItem from '../../components/searchItem/SearchItem';
+import SearchItem from '../../components/SearchItem';
 import useFetch from '../../hooks/useFetch';
 import { URL } from '../../utils/static';
 
@@ -12,7 +12,6 @@ type Props = {};
 
 export default function Hotels({}: Props) {
   const location = useLocation();
-  // error boundery
   const [destination, setDestination] = useState<any>(
     location.state.destination
   );
@@ -26,8 +25,6 @@ export default function Hotels({}: Props) {
     `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`
   );
 
-  console.log('hotel', data);
-
   const handleClick = () => {
     reFetch();
   };
@@ -37,10 +34,10 @@ export default function Hotels({}: Props) {
       <Navbar />
       <Header type="hotels" />
       <div className="flex justify-center mt-5">
-        <div className="w-full max-w-screen-lg flex gap-[20px]">
-          <div className="bg-yellow-600 p-2 sticky border-8 top-[10px] h-max">
+        <div className="w-full max-w-screen-lg flex gap-5">
+          <div className="bg-yellow-600 p-2 sticky border-8 top-3 h-max">
             <h1 className="text-xl mb-2">Search</h1>
-            <div className="flex flex-col mb-2 gap-[5px]">
+            <div className="flex flex-col mb-2 gap-2">
               <label>Destination</label>
               <input
                 placeholder={destination}
@@ -48,10 +45,10 @@ export default function Hotels({}: Props) {
                 onChange={(e) => setDestination(e.target.value)}
               />
             </div>
-            <div className="flex flex-col mb-2 gap-[5px]">
+            <div className="flex flex-col mb-2 gap-2">
               <label className="text-xs">Check-in Date</label>
               <span
-                className="p-1 bg-white flex items-center cursor-pointer h-[50px]"
+                className="p-1 bg-white flex items-center cursor-pointer h-12"
                 onClick={() => setOpenDate(!openDate)}
               >{`${format(date[0].startDate, 'MM/dd/yyyy')} to ${format(
                 date[0].endDate,
@@ -65,7 +62,7 @@ export default function Hotels({}: Props) {
                 />
               )}
             </div>
-            <div className="flex flex-col mb-2 gap-[5px]">
+            <div className="flex flex-col mb-2 gap-3">
               <label>Options</label>
               <div className="p-2">
                 <div className="flex justify-between mb-2 text-xs">

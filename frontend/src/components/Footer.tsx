@@ -1,6 +1,9 @@
+import styles from '../styles';
+
 type Props = {};
 
 export default function Footer({}: Props) {
+  // make it a map
   return (
     <div className="w-full max-w-screen-lg text-xs">
       <div className="w-full flex justify-around mb-12">
@@ -33,7 +36,7 @@ export default function Footer({}: Props) {
           <li className="mb-2 text-blue-900 cursor-pointer">Hotels</li>
         </ul>
       </div>
-      <div className="fText">Copyright 2023</div>
+      <div className={`${styles.flexCenter}`}>Copyright 2023</div>
     </div>
   );
 }

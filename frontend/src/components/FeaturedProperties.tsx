@@ -1,5 +1,6 @@
-import useFetch from '../../hooks/useFetch';
-import { URL } from '../../utils/static';
+import useFetch from '../hooks/useFetch';
+import styles from '../styles';
+import { URL } from '../utils/static';
 
 type Props = {};
 
@@ -16,15 +17,15 @@ export default function FeaturedProperties({}: Props) {
   const { data, loading, error, reFetch } = useFetch(
     `${URL}/hotels?featured=true&limit=5`
   );
-  console.log('featured', data);
+
   return (
-    <div className="w-full max-w-screen-lg flex justify-between gap-[20px]">
+    <div className={`w-full max-w-screen-lg ${styles.flexBetween} gap-5`}>
       {loading ? (
         'loading'
       ) : (
         <>
           {data.map((item: Data, i: number) => (
-            <div className="flex flex-col flex-1 gap-[10px]" key={i}>
+            <div className="flex flex-col flex-1 gap-3" key={i}>
               <img
                 src={
                   item?.photos[0] ||

@@ -1,5 +1,6 @@
-import useFetch from '../../hooks/useFetch';
-import { URL } from '../../utils/static';
+import useFetch from '../hooks/useFetch';
+import styles from '../styles';
+import { URL } from '../utils/static';
 
 type Props = {};
 
@@ -8,7 +9,6 @@ export default function PropertyList({}: Props) {
     `${URL}/hotels/count/countByType` // ?types=apartment
   );
 
-  console.log('data', data);
   const images = [
     'https://q-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o=',
     'https://q-xx.bstatic.com/xdata/images/xphoto/300x240/57584488.jpeg?k=d8d4706fc72ee789d870eb6b05c0e546fd4ad85d72a3af3e30fb80ca72f0ba57&o=',
@@ -18,7 +18,7 @@ export default function PropertyList({}: Props) {
   ];
 
   return (
-    <div className="w-full max-w-screen-lg flex justify-around gap-[20px]">
+    <div className={`w-full max-w-screen-lg ${styles.flexAround} gap-5`}>
       {loading ? (
         'loading'
       ) : (
