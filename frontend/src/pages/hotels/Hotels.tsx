@@ -18,11 +18,15 @@ export default function Hotels({}: Props) {
   const [date, setDate] = useState(location.state.date);
   const [options, setOptions] = useState(location.state.options);
   const [openDate, setOpenDate] = useState(false);
-  const [min, setMin] = useState<null | string>(null);
-  const [max, setMax] = useState<null | string>(null);
+  const [range, setRange] = useState<{
+    min: null | string;
+    max: null | string;
+  }>({ min: null, max: null });
 
   const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels?city=${destination}&min=${min || 0}&max=${max || 10000}`
+    `${URL}/hotels?city=${destination}&min=${range.min || 0}&max=${
+      range.max || 10000
+    }`
   );
 
   console.log('dataaa', data);
@@ -82,7 +86,10 @@ export default function Hotels({}: Props) {
                   <input
                     type="number"
                     className="w-12"
-                    onChange={(e) => setMin(e.target.value)}
+                    name="min"
+                    onChange={(e) =>
+                      setRange({ ...range, [e.target.name]: e.target.value })
+                    }
                   />
                 </div>
                 <div className="flex justify-between mb-2 text-xs">
@@ -92,7 +99,10 @@ export default function Hotels({}: Props) {
                   <input
                     type="number"
                     className="w-12"
-                    onChange={(e) => setMax(e.target.value)}
+                    name="max"
+                    onChange={(e) =>
+                      setRange({ ...range, [e.target.name]: e.target.value })
+                    }
                   />
                 </div>
                 <div className="flex justify-between mb-2 text-xs">
