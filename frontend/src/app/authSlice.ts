@@ -1,6 +1,6 @@
 import { createSlice, configureStore } from '@reduxjs/toolkit';
 
-const INITIAL_STATE = {
+const initialState = {
   user: JSON.parse(localStorage.getItem('user')) || null,
   loading: false,
   error: null,
@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: INITIAL_STATE,
+  initialState,
   reducers: {
     loginStart: (state) => {
       state.user = null;
@@ -43,4 +43,5 @@ store.subscribe(() => {
 
 export const { loginStart, loginSuccess, loginFailure, logout } =
   authSlice.actions;
+
 export default authSlice.reducer;

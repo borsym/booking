@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './login.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { loginStart, loginSuccess, loginFailure } from '../../app/authSlice';
+import { URL } from '../../utils/static';
 const Login = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post('/auth/login', credentials);
+      const res = await axios.post(`${URL}/auth/login`, credentials);
       dispatch(loginSuccess(res.data.details));
       navigate('/');
     } catch (err: any) {
@@ -33,23 +33,27 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <div className="lContainer">
+    <div className="h-screen flex items-center justify-center">
+      <div className="flex flex-col gap-3">
         <input
           type="text"
           placeholder="username"
           id="username"
           onChange={handleChange}
-          className="lInput"
+          className="h-8 p-2 border-2"
         />
         <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
-          className="lInput"
+          className="h-8 p-2 border-2"
         />
-        <button disabled={loading} onClick={handleClick} className="lButton">
+        <button
+          disabled={loading}
+          onClick={handleClick}
+          className="bg-blue-700 text-white font-bold cursor-pointer rounded border-0 px-5 py-3 disabled:cursor-not-allowed"
+        >
           Login
         </button>
         {error && <span>{error.message}</span>}
