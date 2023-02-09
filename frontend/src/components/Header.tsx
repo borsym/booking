@@ -135,9 +135,9 @@ function SearchOptions({
 }: SearchOptionsProps) {
   return (
     <div
-      className={`bg-white h-12 border-3 border-solid  ${styles.flexAround} py-3 rounded-md absolute w-full max-w-5xl -bottom-6`}
+      className={`bg-white h-12 border-2 border-solid border-yellow-600 ${styles.flexAround} py-3 rounded-md absolute w-full max-w-5xl -bottom-6`}
     >
-      <div className={`${styles.flexCenter} gap-3`}>
+      <div className={`${styles.flexCenter} gap-3 `}>
         <HotelIcon color="action" />
         <input
           type="text"
@@ -146,7 +146,9 @@ function SearchOptions({
           onChange={(e) => setDestination(e.target.value)}
         />
       </div>
-      <div className={`${styles.flexCenter} gap-3`}>
+      <div
+        className={`${styles.flexCenter} gap-3 border-l-2 border-r-2 border-solid border-yellow-600 px-2 py-3`}
+      >
         <CalendarMonthOutlinedIcon color="action" />
         <span
           onClick={() => setOpenDate(!openDate)}

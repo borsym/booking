@@ -28,3 +28,12 @@ export type PersonNumberProps = {
   name: string;
   handleOption: (name: string, operation: string) => void;
 };
+
+export type Data = {
+  id: string;
+  name: string;
+  city: string;
+  cheapestPrice: number;
+  rating: number;
+  photos: string[];
+};

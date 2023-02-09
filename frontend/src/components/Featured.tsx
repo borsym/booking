@@ -9,15 +9,13 @@ export default function Featured({}: Props) {
     `${URL}/hotels/count/countByCity?cities=madrid,city` // ?cities=berlin
   );
 
-  console.log('featured', data);
-
   return (
     <div className={`${styles.flexBetween} w-full max-w-screen-lg gap-5`}>
       {loading ? (
         'loading'
       ) : (
         <>
-          {/* Make Card component */}
+          {/* TODO Make Card component */}
           <div
             className={`relative text-white overflow-hidden h-64 border-8 gradient z-10`}
           >
