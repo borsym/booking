@@ -2,10 +2,10 @@ import useFetch from '../hooks/useFetch';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getDatesInRange } from '../utils/utils';
+import { getDatesInRange, isAvailable } from '../utils/utils';
 import { URL } from '../utils/static';
 type Props = {
   setOpen: (arg: boolean) => void;
@@ -16,16 +16,8 @@ const Reserve = ({ setOpen, hotelId }: Props) => {
   const [selectedRooms, setSelectedRooms] = useState<any>([]);
   const { data, loading, error } = useFetch(`${URL}/hotels/room/${hotelId}`);
   const { date } = useSelector<any>((state) => state.search);
-  console.log(date);
   const alldates = getDatesInRange(date[0].startDate, date[0].endDate);
-
-  const isAvailable = (roomNumber: any) => {
-    const isFound = roomNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
-    );
-
-    return !isFound;
-  };
+  const navigate = useNavigate();
 
   const handleSelect = (e: any) => {
     const checked = e.target.checked;
@@ -36,8 +28,6 @@ const Reserve = ({ setOpen, hotelId }: Props) => {
         : selectedRooms.filter((item) => item !== value)
     );
   };
-
-  const navigate = useNavigate();
 
   const handleClick = async () => {
     try {
@@ -55,6 +45,7 @@ const Reserve = ({ setOpen, hotelId }: Props) => {
       console.log(err);
     }
   };
+
   return (
     <div className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center gradient">
       <div className="bg-white p-5 relative z-10">
@@ -81,7 +72,7 @@ const Reserve = ({ setOpen, hotelId }: Props) => {
                     type="checkbox"
                     value={roomNumber._id}
                     onChange={handleSelect}
-                    disabled={!isAvailable(roomNumber)}
+                    disabled={!isAvailable(roomNumber, alldates)}
                   />
                 </div>
               ))}

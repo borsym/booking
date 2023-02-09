@@ -30,11 +30,7 @@ export default function Hotels({}: Props) {
     }`
   );
 
-  console.log('dataaa', data);
-
-  const handleClick = () => {
-    reFetch();
-  };
+  const handleClick = () => reFetch();
 
   const renderData = () => {
     if (data.length === 0)

@@ -1,9 +1,13 @@
 import { MILLISECONDS_PER_DAY } from './static';
 
-export function dayDifference(date1: any, date2: any) {
+export function dayDifference(date1: string | Date, date2: string | Date) {
+  console.log(date1, date2);
+  date1 = new Date(date1);
+  date2 = new Date(date2);
+
   const timeDiff = Math.abs(date2.getTime() - date1.getTime());
   const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY);
-  return diffDays;
+  return 3; //diffDays;
 }
 
 export function getDatesInRange(startDate: string, endDate: string) {
@@ -21,8 +25,6 @@ export function getDatesInRange(startDate: string, endDate: string) {
 
   return dates;
 }
-
-
 
 export function convertDateIntoISO(date: any) {
   return date.map((date: any) => ({
@@ -51,4 +53,12 @@ export function rating(rating: number) {
     default:
       return 'No rating';
   }
+}
+
+export function isAvailable(roomNumber: any, alldates: any) {
+  const isFound = roomNumber.unavailableDates.some((date) =>
+    alldates.includes(new Date(date).getTime())
+  );
+
+  return !isFound;
 }

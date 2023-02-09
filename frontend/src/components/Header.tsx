@@ -6,15 +6,15 @@ import LocalTaxiOutlinedIcon from '@mui/icons-material/LocalTaxiOutlined';
 import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
 
-import { DateRange } from 'react-date-range';
-import { format } from 'date-fns';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { newSearch } from '../app/searchSlice';
-
 import styles from '../styles';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
+
+import { DateRange } from 'react-date-range';
+import { format } from 'date-fns';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { newSearch } from '../app/searchSlice';
 import { convertDateIntoISO } from '../utils/utils';
 import {
   PersonNumberProps,
@@ -31,6 +31,13 @@ const menuPoints = [
   { icon: <AirplanemodeActiveOutlinedIcon />, name: 'Flights' },
   { icon: <LocalTaxiOutlinedIcon />, name: 'Taxi' },
 ];
+
+const renderMenuPoints = menuPoints.map((point) => (
+  <Icon>
+    {point.icon}
+    <span>{point.name}</span>
+  </Icon>
+));
 
 export default function Header({ type }: Props) {
   const [date, setDate] = useState<{}>([
@@ -77,12 +84,7 @@ export default function Header({ type }: Props) {
             <HotelIcon />
             <span>Stay</span>
           </div>
-          {menuPoints.map((point) => (
-            <Icon>
-              {point.icon}
-              <span>{point.name}</span>
-            </Icon>
-          ))}
+          {renderMenuPoints}
         </div>
         {type !== 'hotels' && (
           <>
@@ -92,11 +94,13 @@ export default function Header({ type }: Props) {
               Recusandae, architecto
             </p>
             {user ? null : (
-              <button
-                className={`bg-[#0071c2] text-white font-medium border-none p-2 cursor-pointer ${styles.reversedButtonHover}`}
-              >
-                'Sign in / Register'
-              </button>
+              <Link to="/login">
+                <button
+                  className={`bg-[#0071c2] text-white font-medium border-none p-2 cursor-pointer ${styles.reversedButtonHover}`}
+                >
+                  Sign in / Register
+                </button>
+              </Link>
             )}
             <SearchOptions
               setDestination={setDestination}
@@ -147,7 +151,7 @@ function SearchOptions({
         />
       </div>
       <div
-        className={`${styles.flexCenter} gap-3 border-l-2 border-r-2 border-solid border-yellow-600 px-2 py-3`}
+        className={`${styles.flexCenter} gap-3 border-l-2 border-r-2 border-solid border-yellow-600 px-2`}
       >
         <CalendarMonthOutlinedIcon color="action" />
         <span
