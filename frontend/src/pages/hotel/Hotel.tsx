@@ -10,6 +10,7 @@ import Footer from '../../components/Footer';
 import useFetch from '../../hooks/useFetch';
 import Reserve from '../../components/Reserve';
 
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { dayDifference } from '../../utils/utils';
@@ -17,6 +18,7 @@ import { URL } from '../../utils/static';
 type Props = {};
 
 export default function Hotel({}: Props) {
+  const navigate = useNavigate();
   const location = useLocation();
   const id = location.pathname.split('/')[2];
   const [slideNumber, setSlideNumber] = useState(0);
@@ -28,7 +30,7 @@ export default function Hotel({}: Props) {
   const photoLength: number = data?.photos?.length;
 
   const { date, options }: any = useSelector<any>((state) => state.search);
-  // const { user } = useSelector<any>((state) => state.auth);
+  const { user } = useSelector<any>((state) => state.auth);
   // TODO ez lehet hibas
   // const days = dayDifference(date[0].startDate, date[0].endDate);
   const days = 1;
@@ -51,11 +53,11 @@ export default function Hotel({}: Props) {
   };
 
   const handleClick = () => {
-    // if (user) {
-    //   setOpenModal(true);
-    // } else {
-    //   navigate('/login');
-    // }
+    if (user) {
+      setOpenModal(true);
+    } else {
+      navigate('/login');
+    }
   };
   return (
     <div>
@@ -90,7 +92,10 @@ export default function Hotel({}: Props) {
               </div>
             )}
             <div className="w-full max-w-screen-lg flex flex-col relative gap-3">
-              <button className="absolute right-0 bg-blue-700 text-white font-bold rounded cursor-pointer top-3 border-none py-3 px-[20px]">
+              <button
+                className="absolute right-0 bg-blue-700 text-white font-bold rounded cursor-pointer top-3 border-none py-3 px-[20px]"
+                onClick={handleClick}
+              >
                 Reserve or Book Now!
               </button>
               <h1 className="text-2xl">{data?.name}</h1>

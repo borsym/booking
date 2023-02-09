@@ -8,7 +8,7 @@ const initialState = {
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: initialState,
   reducers: {
     loginStart: (state) => {
       state.user = null;
@@ -31,14 +31,6 @@ const authSlice = createSlice({
       state.error = null;
     },
   },
-});
-
-const store = configureStore({
-  reducer: authSlice.reducer,
-});
-
-store.subscribe(() => {
-  localStorage.setItem('user', JSON.stringify(store.getState().user));
 });
 
 export const { loginStart, loginSuccess, loginFailure, logout } =

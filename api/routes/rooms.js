@@ -13,6 +13,7 @@ const router = express.Router();
 router.post('/:hotelid', verifyAdmin, createRoom);
 
 router.put('/:id', verifyAdmin, updateRoom);
+router.put('/availability/:id', updateRoom);
 
 router.delete('/:id/:hotelid', verifyAdmin, deleteRoom);
 

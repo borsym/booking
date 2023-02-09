@@ -6,6 +6,23 @@ export function dayDifference(date1: any, date2: any) {
   return diffDays;
 }
 
+export function getDatesInRange(startDate: string, endDate: string) {
+  const start = new Date(startDate);
+  const end = new Date(endDate);
+
+  const date = new Date(start.getTime());
+
+  const dates = [];
+
+  while (date <= end) {
+    dates.push(new Date(date).getTime());
+    date.setDate(date.getDate() + 1);
+  }
+
+  return dates;
+}
+
+
 export function convertDateIntoISO(date: any) {
   return date.map((date: any) => ({
     ...date,
@@ -13,6 +30,7 @@ export function convertDateIntoISO(date: any) {
     endDate: date.endDate.toISOString(),
   }));
 }
+
 export function rating(rating: number) {
   switch (rating) {
     case 1:

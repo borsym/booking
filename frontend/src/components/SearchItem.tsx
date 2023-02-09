@@ -16,7 +16,6 @@ type Props = {
 
 export default function SearchItem(item: Props) {
   // console.log('items', item.item); // TODO!!
-  console.log(item);
   return (
     <div className="p-2 rounded flex justify-between mb-5 border-8 border-solid gap-5">
       <img

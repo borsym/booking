@@ -9,7 +9,7 @@ import EmojiPeopleOutlinedIcon from '@mui/icons-material/EmojiPeopleOutlined';
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { newSearch } from '../app/searchSlice';
 
 import styles from '../styles';
@@ -26,6 +26,12 @@ type Props = {
   type?: string;
 };
 
+const menuPoints = [
+  { icon: <TimeToLeaveOutlinedIcon />, name: 'Car rental' },
+  { icon: <AirplanemodeActiveOutlinedIcon />, name: 'Flights' },
+  { icon: <LocalTaxiOutlinedIcon />, name: 'Taxi' },
+];
+
 export default function Header({ type }: Props) {
   const [date, setDate] = useState<{}>([
     { startDate: new Date(), endDate: new Date(), key: 'selection' },
@@ -40,6 +46,8 @@ export default function Header({ type }: Props) {
   const [openOptions, setOpenOption] = useState(false);
 
   const dispatch = useDispatch();
+  const { user } = useSelector<any>((state) => state.auth);
+  const navigate = useNavigate();
 
   const handleOption = (name: string, operation: string) => {
     setOptions((prev: Option) => {
@@ -52,8 +60,6 @@ export default function Header({ type }: Props) {
       };
     });
   };
-
-  const navigate = useNavigate();
 
   const handleSearch = () => {
     const datesWithISOString = convertDateIntoISO(date);
@@ -71,18 +77,12 @@ export default function Header({ type }: Props) {
             <HotelIcon />
             <span>Stay</span>
           </div>
-          <Icon>
-            <TimeToLeaveOutlinedIcon />
-            <span>Car rental</span>
-          </Icon>
-          <Icon>
-            <AirplanemodeActiveOutlinedIcon />
-            <span>Flights</span>
-          </Icon>
-          <Icon>
-            <LocalTaxiOutlinedIcon />
-            <span>Taxi</span>
-          </Icon>
+          {menuPoints.map((point) => (
+            <Icon>
+              {point.icon}
+              <span>{point.name}</span>
+            </Icon>
+          ))}
         </div>
         {type !== 'hotels' && (
           <>
@@ -91,11 +91,13 @@ export default function Header({ type }: Props) {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Recusandae, architecto
             </p>
-            <button
-              className={`bg-[#0071c2] text-white font-medium border-none p-2 cursor-pointer ${styles.reversedButtonHover}`}
-            >
-              Sign in / Register
-            </button>
+            {user ? null : (
+              <button
+                className={`bg-[#0071c2] text-white font-medium border-none p-2 cursor-pointer ${styles.reversedButtonHover}`}
+              >
+                'Sign in / Register'
+              </button>
+            )}
             <SearchOptions
               setDestination={setDestination}
               setOpenDate={setOpenDate}
