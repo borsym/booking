@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import styles from '../styles';
-import { loginFailure, loginStart, logout } from '../app/authSlice';
+import { loginFailure, logout } from '../app/authSlice';
 
 type Props = {};
 

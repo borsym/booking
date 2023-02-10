@@ -12,7 +12,7 @@ import Reserve from '../../components/Reserve';
 
 import { useNavigate } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { dayDifference } from '../../utils/utils';
 import { URL } from '../../utils/static';
 import { Option } from '../../utils/typeDefinitions';

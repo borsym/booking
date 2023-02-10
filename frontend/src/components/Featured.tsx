@@ -1,6 +1,4 @@
-import useFetch from '../hooks/useFetch';
 import styles from '../styles';
-import { URL } from '../utils/static';
 
 type Props = {};
 
