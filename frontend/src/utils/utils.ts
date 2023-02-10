@@ -1,7 +1,6 @@
 import { MILLISECONDS_PER_DAY } from './static';
 
 export function dayDifference(date1: string | Date, date2: string | Date) {
-  console.log(date1, date2);
   date1 = new Date(date1);
   date2 = new Date(date2);
 

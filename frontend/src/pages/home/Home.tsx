@@ -1,8 +1,7 @@
 import React from 'react';
 import Navbar from '../../components/Navbar';
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import Featured from '../../components/Featured';
-import PropertyList from '../../components/PropertyList';
 import FeaturedProperties from '../../components/FeaturedProperties';
 import MailList from '../../components/MailList';
 import Footer from '../../components/Footer';
@@ -16,8 +15,6 @@ export default function Home({}: Props) {
       <Header />
       <div className={`${styles.flexCenter} flex-col gap-8 mt-12`}>
         <Featured />
-        <h1 className="w-5xl text-lg ">Browese by property</h1>
-        <PropertyList />
         <h1 className="w-5xl text-lg">Homes guests love</h1>
         <FeaturedProperties />
         <MailList />

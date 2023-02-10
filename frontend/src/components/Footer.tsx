@@ -9,7 +9,7 @@ export default function Footer({}: Props) {
     <div className="w-full max-w-screen-lg text-xs">
       <div className="w-full flex justify-around mb-12">
         {[...Array(numberOfLists)].map((_, i) => (
-          <ul className="p-0 list-none">
+          <ul className="p-0 list-none" key={i}>
             {items.map((item) => (
               <li className="mb-2 text-blue-900 cursor-pointer" key={item}>
                 {item}

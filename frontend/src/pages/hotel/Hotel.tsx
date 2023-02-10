@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';

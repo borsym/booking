@@ -65,8 +65,8 @@ const Reserve = ({ setOpen, hotelId }: Props) => {
               <div className="font-medium">{item.price}</div>
             </div>
             <div className="flex flex-wrap text-gray-600 gap-2">
-              {item.roomNumbers.map((roomNumber) => (
-                <div className="flex flex-col">
+              {item.roomNumbers.map((roomNumber, i) => (
+                <div className="flex flex-col" key={i}>
                   <label>{roomNumber.number}</label>
                   <input
                     type="checkbox"

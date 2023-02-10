@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Navbar from '../../components/Navbar';
-import Header from '../../components/Header';
+import Header from '../../components/Header/Header';
 
 import SearchItem from '../../components/SearchItem';
 import useFetch from '../../hooks/useFetch';

@@ -1,4 +1,4 @@
 username: admin
 password: admin
 
-search for madrid
+search for madrid or city

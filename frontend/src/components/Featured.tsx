@@ -5,11 +5,6 @@ import { URL } from '../utils/static';
 type Props = {};
 
 export default function Featured({}: Props) {
-  const { data, loading, error, reFetch } = useFetch(
-    `${URL}/hotels/count/countByCity?cities=madrid,city` // ?cities=berlin
-  );
-
-  if (loading) return <>loading</>;
   return (
     <div className={`${styles.flexBetween} w-full max-w-screen-lg gap-5`}>
       {/* TODO Make Card component */}
@@ -23,7 +18,6 @@ export default function Featured({}: Props) {
         />
         <div className={`absolute bottom-5 left-5 z-30 text-xl`}>
           <h1>Budapest</h1>
-          <h2>{data[0]}</h2>
         </div>
       </div>
 
@@ -37,7 +31,6 @@ export default function Featured({}: Props) {
         />
         <div className={`absolute bottom-5 left-5 z-30 text-xl`}>
           <h1>Italy</h1>
-          <h2>{data[1]}</h2>
         </div>
       </div>
 
@@ -51,7 +44,6 @@ export default function Featured({}: Props) {
         />
         <div className={`absolute bottom-5 left-5 z-30 text-xl`}>
           <h1>Poland</h1>
-          <h2>{data[2]}</h2>
         </div>
       </div>
     </div>
