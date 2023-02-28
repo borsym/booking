@@ -1,0 +1,22 @@
+# no dumps on git
+backups/*
+!backups/.gitkeep
+
+# Certificates
+*.pem
+
+# Docker files
+docker-compose.override.yaml
+docker-compose.override.yml
+
+# config
+ecosystem.config.js
+.env
+*.env
+.env*
+!pipeline.env
+
+# Ignore Mac OS Stuff
+.DS_Store
+.AppleDouble
+.LSOverride

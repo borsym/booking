@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 export const register = async (req, res, next) => {
   try {
+    console.log(req.body);
     const salt = bcrypt.genSaltSync(10);
     const hash = bcrypt.hashSync(req.body.password, salt);
 
