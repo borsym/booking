@@ -1,0 +1,71 @@
+version: "3.6"
+
+services:
+  db:
+    build:
+      context: ./mongo
+      dockerfile: ./Dockerfile
+    image: booking_mongo
+    container_name: booking_mongo
+    ports:
+      - "27017:27017"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./mongo/backups:/.tmp
+    env_file:
+      - ./mongo/config/.env
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: booking_api
+    container_name: booking_api
+    ports:
+      - "8800:8800"
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./api:/opt/code
+      - "/opt/code/node_modules"
+    env_file:
+      - ./api/config/.env
+    environment:
+      - APP_SETTINGS=config.DevelopmentConfig # It has to be the last item
+      # - APP_SETTINGS=config.DebugConfig # It has to be the last item
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: booking_frontend
+    container_name: booking_frontend
+    volumes:
+      - "./frontend:/opt/code"
+      - "/opt/code/node_modules"
+    ports:
+      - 5173:5173
+    stdin_open: true
+    tty: true
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - api
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: booking_nginx
+    container_name: booking_nginx
+    restart: always
+    ports:
+      - 8080:80
+    stdin_open: true
+    tty: true
+    depends_on:
+      - api
+      - frontend
