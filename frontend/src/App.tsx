@@ -7,6 +7,7 @@ const Hotels = lazy(() => import('./pages/hotels/Hotels'));
 const Hotel = lazy(() => import('./pages/hotel/Hotel'));
 const Login = lazy(() => import('./pages/login/Login'));
 
+// TODO: refactor this pls
 function App() {
   return (
     <BrowserRouter>
